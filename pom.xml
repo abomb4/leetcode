@@ -9,6 +9,7 @@
 
     <modules>
         <module>1_twosum</module>
+        <module>2_add-two-numbers</module>
         <module>common</module>
     </modules>
 

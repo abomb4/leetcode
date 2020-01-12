@@ -10,7 +10,7 @@
         <version>1.0.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>1_twosum</artifactId>
+    <artifactId>2_add-two-numbers</artifactId>
 
     <build>
         <plugins>
