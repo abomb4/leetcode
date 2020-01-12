@@ -10,6 +10,7 @@
     <modules>
         <module>1_twosum</module>
         <module>2_add-two-numbers</module>
+        <module>739_daily-temperatures</module>
         <module>common</module>
     </modules>
 
