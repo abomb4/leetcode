@@ -12,6 +12,7 @@
         <module>2_add-two-numbers</module>
         <module>739_daily-temperatures</module>
         <module>647_palindromic-substrings</module>
+        <module>621_task-scheduler</module>
         <module>common</module>
     </modules>
 
