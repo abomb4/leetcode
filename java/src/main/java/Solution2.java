@@ -23,7 +23,7 @@ import static com.abomb4.leetcode.test.Asserts.assertNotNull;
  *
  * @author abomb4 2020-01-12
  */
-public class Solution {
+public class Solution2 {
 
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
         ListNode r = null;
@@ -85,7 +85,7 @@ public class Solution {
     }
 
     public static void main(String[] args) {
-        final Solution s = new Solution();
+        final Solution2 s = new Solution2();
         final ListNode l1 = new ListNode(2);
         {
             l1.next = new ListNode(4);

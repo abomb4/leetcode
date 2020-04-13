@@ -25,7 +25,7 @@ import static com.abomb4.leetcode.test.Asserts.*;
  *
  * @author abomb4 2020-01-12
  */
-public class Solution {
+public class Solution647 {
 
     /**
      * 已知有回文的情况下，向两端寻找更长的回文
@@ -80,7 +80,7 @@ public class Solution {
     }
 
     public static void main(String[] args) {
-        final Solution s = new Solution();
+        final Solution647 s = new Solution647();
         {
             final String tst = "abc";
             final int rst = 3;

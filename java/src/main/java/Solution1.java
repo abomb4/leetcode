@@ -20,7 +20,7 @@ import static com.abomb4.leetcode.test.Asserts.assertEquals;
  *
  * @author abomb4 2020-01-12
  */
-public class Solution {
+public class Solution1 {
 
     public int[] twoSum(int[] nums, int target) {
         final HashMap<Integer, Integer> map = new HashMap<>(nums.length);
@@ -37,7 +37,7 @@ public class Solution {
     }
 
     public static void main(String[] args) {
-        final Solution s = new Solution();
+        final Solution1 s = new Solution1();
         final int[] result = s.twoSum(new int[]{2, 7, 11, 15}, 9);
         assertEquals(2, result.length, "result.length");
         assertEquals(0, result[0], "result[0]");

@@ -18,7 +18,7 @@ import static com.abomb4.leetcode.test.Asserts.assertNotNull;
  *
  * @author abomb4 2020-01-12
  */
-public class Solution {
+public class Solution739 {
 
     public int[] dailyTemperatures(int[] t) {
         // Store temperature and index
@@ -55,7 +55,7 @@ public class Solution {
     }
 
     public static void main(String[] args) {
-        final Solution s = new Solution();
+        final Solution739 s = new Solution739();
         {
             final int[] tst = new int[]{73, 74, 75, 71, 69, 72, 76, 73};
             final int[] rst = new int[]{1, 1, 4, 2, 1, 1, 0, 0};

@@ -29,7 +29,7 @@ import static java.util.Collections.swap;
  *
  * @author abomb4 2020-01-12
  */
-public class Solution {
+public class Solution621 {
 
     private int partition(int[] array, int left, int right) {
         // 中轴数值
@@ -84,7 +84,7 @@ public class Solution {
     }
 
     public static void main(String[] args) {
-        final Solution s = new Solution();
+        final Solution621 s = new Solution621();
         {
             final char[] var1 = new char[]{'A', 'A', 'A', 'B', 'B', 'B'};
             final int var2 = 2;
