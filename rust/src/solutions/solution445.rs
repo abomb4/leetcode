@@ -77,25 +77,18 @@ impl Solution {
         let mut plus = 0;
         let mut next_may_means_previous = None;
         loop {
+            let sum;
             match (pop1, pop2) {
-                (Some(num1), Some(num2)) => {
-                    let sum = num1 + num2 + plus;
-                    plus = sum / 10;
-                    let new_node = Some(Box::new(ListNode { val: sum % 10, next: next_may_means_previous }));
-                    next_may_means_previous = new_node;
-                    pop1 = vector1.pop();
-                    pop2 = vector2.pop();
-                },
-                (Some(num), None) | (None, Some(num)) => {
-                    let sum = num + plus;
-                    plus = sum / 10;
-                    let new_node = Some(Box::new(ListNode { val: sum % 10, next: next_may_means_previous }));
-                    next_may_means_previous = new_node;
-                    pop1 = vector1.pop();
-                    pop2 = vector2.pop();
-                },
+                (Some(num1), Some(num2)) => sum = num1 + num2 + plus,
+                (Some(num), None) | (None, Some(num)) => sum = num + plus,
                 (None, None) => break
             }
+
+            plus = sum / 10;
+            let new_node = Some(Box::new(ListNode { val: sum % 10, next: next_may_means_previous }));
+            next_may_means_previous = new_node;
+            pop1 = vector1.pop();
+            pop2 = vector2.pop();
         }
         if plus > 0 {
             Some(Box::new(ListNode { val: plus, next: next_may_means_previous }))
