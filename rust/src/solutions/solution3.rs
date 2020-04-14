@@ -4,8 +4,7 @@ pub struct Solution;
 impl Solution {
     pub fn length_of_longest_substring(s: String) -> i32 {
         let len: usize = s.len();
-        let mut map_like: Vec<i32> = Vec::with_capacity(256);
-        for i in 0..256 { map_like.push(-1); }
+        let mut map_like: [i32; 256] = [-1; 256];
 
         let char_array = s.into_bytes();
 
@@ -25,22 +24,33 @@ impl Solution {
 }
 
 pub fn test() {
+    let mut all_true = true;
     {
         let case = "abcabcbb";
         let resp = Solution::length_of_longest_substring(String::from(case));
         let expe = 3;
-        println!("[1] case: {0}, resp: {1}, expect: {2}, success: {3}", case, resp, expe, resp == expe);
+        let success = resp == expe;
+        if !success { all_true = false; }
+        println!("[1] case: {0}, resp: {1}, expect: {2}, success: {3}", case, resp, expe, success);
     }
     {
         let case = "bbbbbbbb";
         let resp = Solution::length_of_longest_substring(String::from(case));
         let expe = 1;
-        println!("[2] case: {0}, resp: {1}, expect: {2}, success: {3}", case, resp, expe, resp == expe);
+        let success = resp == expe;
+        if !success { all_true = false; }
+        println!("[2] case: {0}, resp: {1}, expect: {2}, success: {3}", case, resp, expe, success);
     }
     {
         let case = "pwwkew";
         let resp = Solution::length_of_longest_substring(String::from(case));
         let expe = 3;
-        println!("[3] case: {0}, resp: {1}, expect: {2}, success: {3}", case, resp, expe, resp == expe);
+        let success = resp == expe;
+        if !success { all_true = false; }
+        println!("[3] case: {0}, resp: {1}, expect: {2}, success: {3}", case, resp, expe, success);
+    }
+    match all_true {
+        true => println!("solution3 success"),
+        false => println!("solution3 failed"),
     }
 }
