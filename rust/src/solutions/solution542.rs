@@ -41,3 +41,32 @@
 // 链接：https://leetcode-cn.com/problems/01-matrix
 // 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
 //
+
+pub struct Solution;
+impl Solution {
+    pub fn update_matrix(matrix: Vec<Vec<i32>>) -> Vec<Vec<i32>> {
+        // 每个点有个元素数量
+        // 每个点的元素等于四边最小值 + 1
+        // 一次遍历可能无法知道某个点的真正最小值
+
+        vec![vec![0, 0, 0],vec![0, 1, 0],vec![0, 0, 0]]
+    }
+}
+
+pub fn test() {
+    let mut all_true = true;
+    {
+        let case = vec![vec![0, 0, 0],vec![0, 1, 0],vec![0, 0, 0]];
+        let case_print = format!("{:?}", case);
+        let resp = Solution::update_matrix(case);
+        let expe = vec![vec![0, 0, 0],vec![0, 1, 0],vec![0, 0, 0]];
+        let success = resp == expe;
+        if !success { all_true = false; }
+        println!("[1] case: {0:?}, resp: {1:?}, expect: {2:?}, success: {3}",
+                 case_print, &resp, &expe, success);
+    }
+    match all_true {
+        true => println!("solution542 success"),
+        false => println!("solution542 failed"),
+    }
+}

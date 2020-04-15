@@ -79,7 +79,7 @@ impl Solution {
     fn find_loop_end(nums: &[i32]) -> usize {
         let right_value: i32 = nums.last().unwrap().clone();
         let len = nums.len();
-        let mut index = (len - 1) / 2;
+        let index = (len - 1) / 2;
         loop {
             match (nums.get(index), nums.get(index + 1)) {
                 (Some(num), Some(next)) => {
