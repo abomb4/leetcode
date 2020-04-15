@@ -1,7 +1,7 @@
 import java.util.*;
 
-import static com.abomb4.leetcode.test.Asserts.assertArrayEquals;
-import static com.abomb4.leetcode.test.Asserts.assertNotNull;
+import static util.Asserts.assertArrayEquals;
+import static util.Asserts.assertNotNull;
 
 /**
  * 根据每日 气温 列表，请重新生成一个列表，对应位置的输入是你需要再等待多久温度才会升高超过该日的天数。

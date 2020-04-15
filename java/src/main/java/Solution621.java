@@ -1,8 +1,6 @@
 import java.util.Arrays;
-import java.util.TreeMap;
 
-import static com.abomb4.leetcode.test.Asserts.*;
-import static java.util.Collections.swap;
+import static util.Asserts.assertEquals;
 
 /**
  * 给定一个用字符数组表示的 CPU 需要执行的任务列表。其中包含使用大写的 A - Z 字母表示的26 种不同种类的任务。

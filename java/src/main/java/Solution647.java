@@ -1,4 +1,4 @@
-import static com.abomb4.leetcode.test.Asserts.*;
+import static util.Asserts.*;
 
 /**
  * 给定一个字符串，你的任务是计算这个字符串中有多少个回文子串。
