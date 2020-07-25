@@ -22,9 +22,19 @@
 // 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
 //
 
+use std::time::{SystemTime, UNIX_EPOCH};
+
 const SOLUTION_NUMBER: usize = 215;
 pub struct Solution;
 impl Solution {
+
+    fn fake_rand(left_bound: usize, right_bound: usize) -> usize {
+        let time = SystemTime::now();
+        let ep = time.duration_since(UNIX_EPOCH).expect("Time failed").as_millis() as u64;
+        let rnd: usize = (ep % ((right_bound - left_bound) as u64)) as usize;
+
+        left_bound + rnd
+    }
 
     fn swap<T: Copy>(nums: &mut Vec<T>, i: usize, j: usize) {
         if i != j {
@@ -38,6 +48,11 @@ impl Solution {
         if left_bound >= right_bound {
             return;
         }
+        let rand = Self::fake_rand(left_bound, right_bound);
+        if rand != right_bound {
+            Self::swap(nums, rand, right_bound);
+        }
+
         let base = right_bound;
         let base_value = nums[base];
         let mut lo = left_bound;
