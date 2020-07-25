@@ -32,3 +32,6 @@ out
 
 # Maven
 target
+
+# Rust
+Cargo.lock
