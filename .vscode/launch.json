@@ -9,6 +9,7 @@
             "type": "cppvsdbg",
             "request": "launch",
             "preLaunchTask": "Rust: cargo build - rust",
+            "envFile": "${workspaceFolder}/.vscode/rust.env",
             "program": "${workspaceFolder}/rust/target/debug/leetcode-by-rust.exe",
             "args": [],
             "stopAtEntry": false,
