@@ -4,6 +4,7 @@ use solutions::solution4::test as test4;
 use solutions::solution10::test as test10;
 use solutions::solution11::test as test11;
 use solutions::solution15::test as test15;
+use solutions::solution17::test as test17;
 use solutions::solution33::test as test33;
 use solutions::solution215::test as test215;
 use solutions::solution445::test as test445;
@@ -17,6 +18,7 @@ fn test(num: i32) {
         10 => test10(),
         11 => test11(),
         15 => test15(),
+        17 => test17(),
         33 => test33(),
         215 => test215(),
         445 => test445(),
@@ -27,5 +29,5 @@ fn test(num: i32) {
 }
 
 fn main() {
-    test(10);
+    test(17);
 }
