@@ -1,33 +1,45 @@
 mod solutions;
-use solutions::solution3::test as test3;
-use solutions::solution4::test as test4;
-use solutions::solution10::test as test10;
-use solutions::solution11::test as test11;
-use solutions::solution15::test as test15;
-use solutions::solution17::test as test17;
-use solutions::solution33::test as test33;
-use solutions::solution215::test as test215;
-use solutions::solution445::test as test445;
-use solutions::solution542::test as test542;
-use solutions::solution974::test as test974;
 
-fn test(num: i32) {
-    match num {
-        3 => test3(),
-        4 => test4(),
-        10 => test10(),
-        11 => test11(),
-        15 => test15(),
-        17 => test17(),
-        33 => test33(),
-        215 => test215(),
-        445 => test445(),
-        542 => test542(),
-        974 => test974(),
-        _ => println!("solution {0} not found", num),
+use std::collections::HashMap;
+
+struct Main {
+    the_map: HashMap<isize, Box<dyn Fn()>>,
+}
+
+impl Main {
+
+    pub fn new() -> Main {
+        let mut r = Main {
+            the_map: HashMap::with_capacity(100)
+        };
+        macro_rules! mm {
+            ($map: ident, $mod_name: ident, $num: expr) => {
+                use solutions::$mod_name::test as $mod_name;
+                r.the_map.insert($num, Box::new(&$mod_name));
+            };
+        }
+        mm!(the_map, solution3, 3);
+        mm!(the_map, solution4, 4);
+        mm!(the_map, solution10, 10);
+        mm!(the_map, solution11, 11);
+        mm!(the_map, solution15, 15);
+        mm!(the_map, solution17, 17);
+        mm!(the_map, solution33, 33);
+        mm!(the_map, solution215, 215);
+        mm!(the_map, solution445, 445);
+        mm!(the_map, solution542, 542);
+        mm!(the_map, solution974, 974);
+        r
+    }
+
+    pub fn test(&self, num: isize) {
+        match self.the_map.get(&num) {
+            Some(tst) => tst(),
+            None => println!("solution {0} not found.", &num)
+        }
     }
 }
 
 fn main() {
-    test(17);
+    Main::new().test(3);
 }
