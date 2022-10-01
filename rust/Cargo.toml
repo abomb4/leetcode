@@ -1,0 +1,9 @@
+[package]
+name = "leetcode-by-rust"
+version = "0.1.0"
+authors = ["abomb4 <yangrlx@gmail.com>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
