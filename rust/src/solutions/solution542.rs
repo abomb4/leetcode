@@ -43,30 +43,162 @@
 //
 
 pub struct Solution;
+
 impl Solution {
     pub fn update_matrix(matrix: Vec<Vec<i32>>) -> Vec<Vec<i32>> {
         // 每个点有个元素数量
         // 每个点的元素等于四边最小值 + 1
         // 一次遍历可能无法知道某个点的真正最小值
 
-        vec![vec![0, 0, 0],vec![0, 1, 0],vec![0, 0, 0]]
+        let len_x = matrix.len();
+        if len_x <= 0 {
+            return Vec::new();
+        }
+
+        let len_y = matrix[0].len();
+        if len_y <= 0 {
+            return Vec::new();
+        }
+
+        let mut result: Vec<Vec<i32>> = Vec::with_capacity(len_x);
+        for i in 0..len_x {
+            result.push(Vec::with_capacity(len_y));
+            for j in 0..len_y {
+                let num = matrix[i][j];
+                if num == 0 {
+                    result[i].push(0);
+                    continue;
+                }
+                let mut min = i32::MAX;
+                if i > 0 {
+                    if matrix[i - 1][j] == 0 {
+                        result[i].push(1);
+                        continue;
+                    }
+                    let previous = result[i - 1][j];
+                    if previous != i32::MAX {
+                        min = min.min(previous + 1);
+                    }
+                }
+                if j > 0 {
+                    if matrix[i][j - 1] == 0 {
+                        result[i].push(1);
+                        continue;
+                    }
+                    let previous = result[i][j - 1];
+                    if previous != i32::MAX {
+                        min = min.min(previous + 1);
+                    }
+                }
+                result[i].push(min);
+            }
+        }
+        let i_m_x = len_x - 1;
+        let i_m_y = len_y - 1;
+        for i in (0..len_x).rev() {
+            for j in (0..len_y).rev() {
+                let mut min = result[i][j];
+                if min == 0 || min == 1 {
+                    continue;
+                }
+                if i < i_m_x {
+                    if matrix[i + 1][j] == 0 {
+                        result[i][j] = 1;
+                        continue;
+                    }
+                    min = min.min(result[i + 1][j] + 1);
+                }
+                if j < i_m_y {
+                    if matrix[i][j + 1] == 0 {
+                        result[i][j] = 1;
+                        continue;
+                    }
+                    min = min.min(result[i][j + 1] + 1);
+                }
+                result[i][j] = min;
+            }
+        }
+
+        result
     }
 }
 
-pub fn test() {
-    let mut all_true = true;
-    {
-        let case = vec![vec![0, 0, 0],vec![0, 1, 0],vec![0, 0, 0]];
+#[cfg(test)]
+mod test {
+    use super::*;
+
+    #[test]
+    pub fn test1() {
+        let case = vec![vec![0, 0, 0], vec![0, 1, 0], vec![0, 0, 0]];
         let case_print = format!("{:?}", case);
         let resp = Solution::update_matrix(case);
-        let expe = vec![vec![0, 0, 0],vec![0, 1, 0],vec![0, 0, 0]];
-        let success = resp == expe;
-        if !success { all_true = false; }
-        println!("[1] case: {0:?}, resp: {1:?}, expect: {2:?}, success: {3}",
-                 case_print, &resp, &expe, success);
+        let expe = vec![vec![0, 0, 0], vec![0, 1, 0], vec![0, 0, 0]];
+        assert_eq!(
+            resp, expe,
+            "[1] case: {0:?}, resp: {1:?}, expect: {2:?}",
+            case_print, &resp, &expe
+        );
     }
-    match all_true {
-        true => println!("solution542 success"),
-        false => println!("solution542 failed"),
+
+    #[test]
+    pub fn test2() {
+        let case = vec![
+            vec![0, 1, 0, 1, 1],
+            vec![1, 1, 0, 0, 1],
+            vec![0, 0, 0, 1, 0],
+            vec![1, 0, 1, 1, 1],
+            vec![1, 0, 0, 0, 1],
+        ];
+        let case_print = format!("{:?}", case);
+        let resp = Solution::update_matrix(case);
+        let expe = vec![
+            vec![0, 1, 0, 1, 2],
+            vec![1, 1, 0, 0, 1],
+            vec![0, 0, 0, 1, 0],
+            vec![1, 0, 1, 1, 1],
+            vec![1, 0, 0, 0, 1],
+        ];
+
+        assert_eq!(
+            resp, expe,
+            "[1] case: {0:?}, resp: {1:?}, expect: {2:?}",
+            case_print, &resp, &expe
+        );
+    }
+
+    #[test]
+    pub fn test3() {
+        let case = vec![
+            vec![1, 0, 1, 0, 0, 0, 1, 1, 1, 1],
+            vec![1, 1, 1, 0, 1, 1, 1, 1, 0, 1],
+            vec![1, 0, 1, 1, 1, 1, 0, 1, 0, 0],
+            vec![1, 0, 1, 1, 1, 0, 1, 1, 1, 1],
+            vec![1, 1, 0, 1, 1, 1, 1, 0, 0, 0],
+            vec![1, 1, 0, 0, 1, 0, 1, 1, 0, 1],
+            vec![1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+            vec![1, 1, 0, 0, 0, 1, 1, 1, 0, 0],
+            vec![0, 1, 1, 1, 0, 0, 1, 0, 1, 1],
+            vec![1, 1, 0, 0, 0, 1, 0, 1, 1, 0],
+        ];
+        let case_print = format!("{:?}", case);
+        let resp = Solution::update_matrix(case);
+        let expe = vec![
+            vec![1, 0, 1, 0, 0, 0, 1, 2, 1, 2],
+            vec![2, 1, 1, 0, 1, 1, 1, 1, 0, 1],
+            vec![1, 0, 1, 1, 2, 1, 0, 1, 0, 0],
+            vec![1, 0, 1, 2, 1, 0, 1, 1, 1, 1],
+            vec![2, 1, 0, 1, 2, 1, 1, 0, 0, 0],
+            vec![2, 1, 0, 0, 1, 0, 1, 1, 0, 1],
+            vec![2, 2, 1, 1, 1, 1, 2, 2, 1, 1],
+            vec![1, 1, 0, 0, 0, 1, 2, 1, 0, 0],
+            vec![0, 1, 1, 1, 0, 0, 1, 0, 1, 1],
+            vec![1, 1, 0, 0, 0, 1, 0, 1, 1, 0],
+        ];
+
+        assert_eq!(
+            resp, expe,
+            "[1] case: {0:?}, resp: {1:?}, expect: {2:?}",
+            case_print, &resp, &expe
+        );
     }
 }

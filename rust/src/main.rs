@@ -27,7 +27,6 @@ impl Main {
         mm!(the_map, solution33, 33);
         mm!(the_map, solution215, 215);
         mm!(the_map, solution445, 445);
-        mm!(the_map, solution542, 542);
         mm!(the_map, solution974, 974);
         r
     }

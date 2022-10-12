@@ -16,18 +16,6 @@
             },
             "program": "${cargo:program}",
             "args": []
-        },
-        {
-            "preLaunchTask": "Rust: cargo build",
-            "name": "(Windows) 启动",
-            "type": "cppvsdbg",
-            "request": "launch",
-            "program": "${workspaceFolder}/target/debug/leetcode-by-rust.exe",
-            "args": [],
-            "stopAtEntry": false,
-            "cwd": "${workspaceFolder}",
-            "environment": [],
-            "externalConsole": false
         }
     ]
 }
